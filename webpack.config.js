@@ -75,7 +75,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'answer.ing',
-      template: '/client/index.html',
+      template: './public/index.html',
       inject: false,
       minify: true,
     }),
@@ -89,8 +89,8 @@ module.exports = {
     compress: true,
     hot: true,
     proxy: {
-      '/user': {
-        target: 'http://localhost:4000',
+      '/api': {
+        target: 'http://localhost:3000',
         secure: false,
       },
     },
