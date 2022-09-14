@@ -4,15 +4,29 @@ const dbController = {};
 
 dbController.createUser = async (req, res, next) => {
   try {
-    const values = ['Crystal', 'crystal.agoncillo@gmail.com'];
-    const text = 'INSERT INTO user (name, email) VALUES ($1, $2)';
+    console.log('Creating user...');
+    const {
+      name,
+      email
+    } = req.body;
+    console.log('req.body:', req.body);
+    const values = [name, email];
+    // const text = `INSERT INTO client (name, email) VALUES ('${name}', '${email}');`;
+    // console.log('QUERY', text);
+    // const newUser = await db.query(text);
+    const text = `INSERT INTO client (name, email) VALUES ($1, $2)`;
     await db.query(text, values);
-    const newUser = await db.query('SELECT * FROM user ORDER BY id DESC LIMIT 1');
+  
+    // console.log(newUser);
+    // res.locals.newUser = newUser;
+    const newUser = await db.query('SELECT * FROM client ORDER BY id DESC LIMIT 1');
     console.log('result: ', newUser.rows);
     res.locals.newUser = newUser.rows;
     return next();
   } catch (err) {
-    console.log('error:', err);
+    console.log('Error creating user:', err);
     return next({ log: `dbController.createUser error: ${err}`, message: 'Error found in dbController.createUser' });
   }
 }
+
+module.exports = dbController;

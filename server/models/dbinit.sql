@@ -1,24 +1,30 @@
-CREATE TABLE "user" (
+CREATE TABLE "client" (
   "id" SERIAL PRIMARY KEY,
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- need to verify
+  "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "name" VARCHAR(50) NOT NULL,
   "email" VARCHAR(100) NOT NULL UNIQUE
 );
 
-CREATE TABLE "session" (
+-- INSERT INTO client (name, email) VALUES ('Crystal', 'crystal@gmail.com');
+-- SELECT * FROM client;
+-- DELETE FROM client WHERE client.email='crystal@gmail.com';
+
+CREATE TABLE "client_session" (
   "id" SERIAL PRIMARY KEY,
-  "user_id" INT NOT NULL,
+  "client_id" INT NOT NULL,
   "cookie_id" INT NOT NULL,
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- verify
+  "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "expires_at" TIMESTAMPTZ
 );
 
 CREATE TABLE "company" (
   "id" SERIAL PRIMARY KEY,
   "created_by" INT,   -- do we want a "created_by" attribute?
-  "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- verify/do we want a created_at?
+  "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- do we want a created_at?
   "name" VARCHAR(100) NOT NULL UNIQUE
 );
+-- INSERT INTO company (name) VALUES ('Codesmith');
+-- SELECT * FROM company;
 
 CREATE TABLE "question" (
   "id" SERIAL PRIMARY KEY,
@@ -56,18 +62,18 @@ CREATE TABLE "question_company" (
 --   "industry" VARCHAR(100)
 -- );
 
-ALTER TABLE "session" ADD FOREIGN KEY ("user_id") REFERENCES "user" ("id");
+ALTER TABLE "client_session" ADD FOREIGN KEY ("client_id") REFERENCES "client" ("id");
 
-ALTER TABLE "company" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
+ALTER TABLE "company" ADD FOREIGN KEY ("created_by") REFERENCES "client" ("id");
 
-ALTER TABLE "question" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
+ALTER TABLE "question" ADD FOREIGN KEY ("created_by") REFERENCES "client" ("id");
 
 ALTER TABLE "answer" ADD FOREIGN KEY ("question_id") REFERENCES "question" ("id");
-ALTER TABLE "answer" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
+ALTER TABLE "answer" ADD FOREIGN KEY ("created_by") REFERENCES "client" ("id");
 
 ALTER TABLE "question_company" ADD FOREIGN KEY ("question_id") REFERENCES "question" ("id");
 ALTER TABLE "question_company" ADD FOREIGN KEY ("company_id") REFERENCES "company" ("id");
-ALTER TABLE "question_company" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
+ALTER TABLE "question_company" ADD FOREIGN KEY ("created_by") REFERENCES "client" ("id");
 
 -- CREATE TABLE "" (
 --   "id" SERIAL PRIMARY KEY,
