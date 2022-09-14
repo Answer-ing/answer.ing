@@ -4,8 +4,8 @@ const dbController = {};
 
 dbController.createUser = async (req, res, next) => {
   try {
-    const values = ['Crystal', 'crystal.agoncillo@gmail.com', ''];
-    const text = 'INSERT INTO user (name, email, created_at) VALUES ($1, $2, $3)';
+    const values = ['Crystal', 'crystal.agoncillo@gmail.com'];
+    const text = 'INSERT INTO user (name, email) VALUES ($1, $2)';
     await db.query(text, values);
     const newUser = await db.query('SELECT * FROM user ORDER BY id DESC LIMIT 1');
     console.log('result: ', newUser.rows);

@@ -24,9 +24,9 @@ CREATE TABLE "question" (
   "id" SERIAL PRIMARY KEY,
   "created_by" INT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- verify
-  "deleted_at" TIMESTAMPTZ, -- DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+--  "deleted_at" TIMESTAMPTZ, -- DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   "text" VARCHAR(500) NOT NULL UNIQUE,
-  "role" INT NOT NULL,          -- do we want this to be an INT or VARCHAR?
+--  "role" INT NOT NULL,          -- do we want this to be an INT or VARCHAR?
   "level" VARCHAR(50)
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE "answer" (
   "question_id" INT NOT NULL,
   "created_by" INT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- verify
-  "deleted_at" TIMESTAMPTZ, -- TIMESTAMPTZ NULL ON UPDATE CURRENT_TIMESTAMP
+--  "deleted_at" TIMESTAMPTZ, -- TIMESTAMPTZ NULL ON UPDATE CURRENT_TIMESTAMP
   "modified_at" TIMESTAMPTZ, -- TIMESTAMPTZ NULL ON UPDATE CURRENT_TIMESTAMP
   "text" VARCHAR(2500) NOT NULL UNIQUE
 );
@@ -57,12 +57,10 @@ CREATE TABLE "question_company" (
 -- );
 
 ALTER TABLE "session" ADD FOREIGN KEY ("user_id") REFERENCES "user" ("id");
--- ALTER TABLE "session" ADD FOREIGN KEY ("cookie_id") REFERENCES "" ("id");
 
 ALTER TABLE "company" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
 
 ALTER TABLE "question" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
--- ALTER TABLE "question" ADD FOREIGN KEY ("role") REFERENCES "role" ("id");
 
 ALTER TABLE "answer" ADD FOREIGN KEY ("question_id") REFERENCES "question" ("id");
 ALTER TABLE "answer" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
