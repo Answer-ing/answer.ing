@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS AnswerIng;
-
 CREATE TABLE "user" (
   "id" SERIAL PRIMARY KEY,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- need to verify
@@ -26,7 +24,7 @@ CREATE TABLE "question" (
   "id" SERIAL PRIMARY KEY,
   "created_by" INT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- verify
-  "deleted_at" TIMESTAMPTZ NULL ON UPDATE CURRENT_TIMESTAMP,
+  "deleted_at" TIMESTAMPTZ, -- DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   "text" VARCHAR(500) NOT NULL UNIQUE,
   "role" INT NOT NULL,          -- do we want this to be an INT or VARCHAR?
   "level" VARCHAR(50)
@@ -37,9 +35,9 @@ CREATE TABLE "answer" (
   "question_id" INT NOT NULL,
   "created_by" INT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- verify
-  "deleted_at" TIMESTAMPTZ NULL ON UPDATE CURRENT_TIMESTAMP,
-  "modified_at" TIMESTAMPTZ NULL ON UPDATE CURRENT_TIMESTAMP,
-  "text" VARCHAR(2500) NOT NULL UNIQUE,
+  "deleted_at" TIMESTAMPTZ, -- TIMESTAMPTZ NULL ON UPDATE CURRENT_TIMESTAMP
+  "modified_at" TIMESTAMPTZ, -- TIMESTAMPTZ NULL ON UPDATE CURRENT_TIMESTAMP
+  "text" VARCHAR(2500) NOT NULL UNIQUE
 );
 
 -- "question_company" not sure how to join table? please verify below
@@ -71,7 +69,7 @@ ALTER TABLE "answer" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
 
 ALTER TABLE "question_company" ADD FOREIGN KEY ("question_id") REFERENCES "question" ("id");
 ALTER TABLE "question_company" ADD FOREIGN KEY ("company_id") REFERENCES "company" ("id");
-ALTER TABLE "question_company" ADD FOREIGN KEY ("created_at") REFERENCES "user" ("id");
+ALTER TABLE "question_company" ADD FOREIGN KEY ("created_by") REFERENCES "user" ("id");
 
 -- CREATE TABLE "" (
 --   "id" SERIAL PRIMARY KEY,
