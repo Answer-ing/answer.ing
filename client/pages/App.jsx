@@ -20,6 +20,8 @@ function App() {
 
   // code adapted from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
   // ?. explained here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+  console.log('hello!')
+  if (document.cookie) console.log('document.cookie:', document.cookie);
   const getCookie = (cookie) => {
     return document.cookie
       .split('; ')
@@ -30,16 +32,17 @@ function App() {
   // on page load, check authentication status. the [] at the end signals we will never re-check this session.
   // i.e. we're not subscribing this useEffect hook to any other changes in state.
   useEffect(() => {
-    if (getCookie('sessionID')) {
-    console.log('found a session cookie. validating...')
-    fetch('http://localhost:3000/verifyuser', {
-      credentials: 'same-origin',
-    })
-    .then(res => {
-      if (res.status === 200) changeAuthenticated(true);
-      else document.cookie = 'SessionID=; expires=Thu, 01 Jan 1970 00:00:00 GMT; Secure'
-    });
-    }
+    // if (getCookie('sessionID')) {
+    //   console.log('found a session cookie. validating...')
+      fetch('/verifyuser', {
+        credentials: 'same-origin',
+      })
+      .then(res => {
+        console.log('res inside fetch call for /verifyuser: ', res);
+        // if (res.status === 200) changeAuthenticated(true);
+        // else document.cookie = 'SessionID=; expires=Thu, 01 Jan 1970 00:00:00 GMT; Secure'
+      });
+    // }
   }, []);
 
   return (

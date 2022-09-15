@@ -5,7 +5,8 @@ body {
 }
 
 #codesmithImg {
-  width: 27vw;
+  min-width: 200px;
+  max-width: 27.5vw;
   // height: auto;
   // position: absolute;
   // top: 0px;
@@ -21,20 +22,14 @@ body {
 .LandingPage {
   // width: 100vw;
   // height: 100vh;
-
   background-color: #020C25;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items:center;
   gap:5vw;
-
   margin-left: auto;
   margin-right: auto;
-
-
-
 
   .LandingText {
     text-align: center;
@@ -52,135 +47,53 @@ body {
 
   .LogInButton {
     cursor: pointer;
-    width: 275px;
+    width: 350px;
     height: 70px;
-    background-image: url('https://i.stack.imgur.com/mKpeu.png');
-    background-size: 265px;
+    background-image: url('https://user-images.githubusercontent.com/9599/61177475-2ddce800-a58b-11e9-9bf6-aa4794a99f2a.png');
+    background-position: center;
+    background-size: cover;
+    // background-size: 265px;
     border-radius: 15px;
-    border: 5px solid rgb(0, 126, 189);
+    // border: 5px solid #000;
+    transition: transform linear 0.3s;
   }
 
   .LogInButton:hover {
-    border: 5px solid  #019be8;
-    box-shadow: -3px 4px 6px  #00314a;
-    transition: 0.3s;
+    // border: 5px solid  #fff;
+    transform: scale(1.005);
   }
 
   .LogInButton:active {
     background-color: #ffbf00;
-}
+  }
 }
 
 .bigger {
   font-size: 250%;
 }
 
-.SetCohort {
-  width: 100vw;
-  height: 120vh;
-  z-index: 1000;
-
+.MainPage {
+  // width: 100vw;
+  // height: 100vh;
   background-color: #020C25;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items:center;
-  gap:5vw;
-
+  gap: 5vw;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0vh;
+  color: whitesmoke;
+  font-family: Verdana, Tahoma, sans-serif;
 
-  padding: 20px;
-
-
-
-  .SetCohortText {
+  .MainText {
     text-align: center;
     font-family: Verdana, Tahoma, sans-serif;
-    font-size: 25px;
-    color: whitesmoke;
-    width: 70vw;
+    font-size: 3.25em;
   }
 
-  .lineTitle {
-    font-family: Verdana, Tahoma, sans-serif;
-    font-size: 20px;
-    color: whitesmoke;
-  }
-
-  #cohortSelect {
-    padding: 6px;
-    width: 8vw;
-    height: 5vh;
-    margin-bottom: 4vh;
-    margin-right: 30px;
-    border-radius: 8px;
-    font-size: 15px !important;
-  }
-
-  #orgSelect {
-    padding: 10px;
-    width: 16vw;
-    height: 5vh;
-    margin-bottom: 4vh;
-    margin-right: 30px;
-    border-radius: 8px;
-    font-size: 15px !important;
-  }
-
-  #linkedSelect {
-    padding: 10px;
-    width: 13.2vw;
-    height: 5vh;
-    margin-bottom: 4vh;
-    margin-right: 30px;
-    border-radius: 8px;
-    font-size: 15px !important;
-  }
-
-  #cohortNumberSelect {
-    padding: 10px;
-    width: 6vw;
-    height: 5vh;
-    margin-bottom: 4vh;
-    margin-right: 30px;
-    border-radius: 8px;
-    font-size: 15px !important;
-  }
-
-  .SetCohortInput {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    gap: 1vw;
-
-    input {
-      width: 10vw;
-    }
-
-    button {
-      width: 15vw;
-      height: 7vh;
-      border-radius: 15px;
-      color: whitesmoke;
-      background-color: #008dd3;
-      border: #008dd3;
-      font-family: Verdana, Tahoma, sans-serif;
-      font-weight: 500;
-    }
-      button:hover {
-    background-color: #009fee;
-    transition: 0.3s;
-  }
-
-  button:active {
-    background-color: #0180c0;
-}
+  textarea {
+    padding: 0.5em 1em;
   }
 }
 

@@ -41,8 +41,8 @@ function MainPage(props) {
   // this is usually done with query params (?search=""&tag=""&role="", etc.)
 
   return (
-    <div>
-      <h1>you have hit the main page. congrats you are a baller!</h1>
+    <div className="MainPage">
+      <span className="MainText">Answer.ing<br /></span>
       <NavbarContainer />
       <PostQuestion />
       {/* {questions} */}
