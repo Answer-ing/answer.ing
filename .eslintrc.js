@@ -3,8 +3,8 @@ module.exports = {
     "jest",
   ],
   extends: [
-    'airbnb-base',
-    'airbnb-base/whitespace',
+    'airbnb',
+    'airbnb/whitespace',
     'plugin:jest/recommended',
   ],
   root: true,
@@ -12,6 +12,7 @@ module.exports = {
     browser: true,
     node: true,
     jest: true,
+    es2022: true,
   },
   rules: {
     'arrow-parens': 'off',
