@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 require('dotenv').config(); // to access the PG_URI env var
 
-const PG_URI = 'postgresql://nickkrug:Be11@tles@localhost:5432/answering';
+// const PG_URI = 'postgresql://nickkrug:Be11@tles@localhost:5432/answering';
 
 // development
 // const myURI = `postgresql://${process.env.USER}:${process.env.PASSWORD}@${process.env.HOST}:${process.env.PG_PORT}/${process.env.DATABASE}`;
@@ -9,7 +9,7 @@ const PG_URI = 'postgresql://nickkrug:Be11@tles@localhost:5432/answering';
 
 //Object with connectionString to our postgresURL
 const pool = new Pool({
-  connectionString: PG_URI
+  connectionString: process.env.PG_URI;
   // connectionString: myURI
 });
 
