@@ -15,7 +15,7 @@ function PostQuestion() {
         }
 
       }
-  }
+  )}
 
   return (
     <div>
