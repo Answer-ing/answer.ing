@@ -89,9 +89,35 @@ module.exports = {
     compress: true,
     hot: true,
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
+      '/**': {
+        target: 'http://localhost:3000/',
         secure: false,
+        changeOrigin: true,
+      },
+      '/assets/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+        changeOrigin: true,
+      },
+      '/login/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+        changeOrigin: true,
+      },
+      '/login': {
+        target: 'http://localhost:3000/',
+        secure: false,
+        changeOrigin: true,
+      },
+      '/verifyuser': {
+        target: 'http://localhost:3000/verifyuser',
+        secure: false,
+        changeOrigin: true,
+      },
+      '/verifyuser**': {
+        target: 'http://localhost:3000/verifyuser',
+        secure: false,
+        changeOrigin: true,
       },
     },
   },
