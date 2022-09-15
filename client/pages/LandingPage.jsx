@@ -6,12 +6,12 @@ import React, { Component } from 'react';
 
 export const LandingPage = (props) => {
 
-  //Redirect user to LinkedIn OAuth then if successful set authenticated to true
+  // Redirect user to LinkedIn OAuth then if successful set authenticated to true
   async function logIn() {
     const CLIENT_ID = 'Iv1.17f49f5c8005c3c4';
     // INSERT GOOGLE OAUTH REQUEST HERE.
     //parent.open(`https://www.linkedin.com/oauth/v2/authorization/?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&state="A9Sd.udf8-d1"&scope=${SCOPE}`)
-    parent.open(`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`)
+    window.open(`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`, 'GitHub', 'toolbar=no, menubar=no, width=600, height=700, top=100, left=100')
     //result.isInSystem === true => 
     props.changeAuthenticated(true);
   }

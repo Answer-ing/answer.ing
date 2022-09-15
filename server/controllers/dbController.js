@@ -5,9 +5,9 @@ const dbController = {};
 dbController.createUser = async (req, res, next) => {
   try {
     console.log('Creating user...');
-    const { name, email } = req.body;
-    const values = [name, email];
-    const text = `INSERT INTO client (name, email) VALUES ($1, $2)`;
+    const { name, id } = res.locals.user;
+    const values = [name, id];
+    const text = `INSERT INTO client (name, user_id) VALUES ($1, $2)`;
     await db.query(text, values);
     const newUser = await db.query('SELECT * FROM client ORDER BY id DESC LIMIT 1');
     console.log('Successfully registered the following user: ', newUser.rows);
@@ -30,13 +30,13 @@ dbController.findUserByName = async (req, res, next) => {
 
     if (name) console.log(`Successfully located the following user(s) named ${name}:`, userFound.rows);
     else console.log(`Successfully located the following user(s) with the email '${email}':`, userFound.rows[0]);
-   
+
     res.locals.userFound = userFound.rows;
     return next();
   } catch (err) {
     return next({ log: `dbController.findUserByName error: ${error}`, message: 'Error found @ dbControllers.findUserByName' });
   }
-}
+};
 
 dbController.findUserById = async (req, res, next) => {
   try {
