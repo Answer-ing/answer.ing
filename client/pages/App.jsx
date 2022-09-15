@@ -39,6 +39,8 @@ function App() {
       })
       .then(res => {
         console.log('res inside fetch call for /verifyuser: ', res);
+        console.log('closing window...');
+        // window.close();
         // if (res.status === 200) changeAuthenticated(true);
         // else document.cookie = 'SessionID=; expires=Thu, 01 Jan 1970 00:00:00 GMT; Secure'
       });

@@ -114,11 +114,6 @@ module.exports = {
         secure: false,
         changeOrigin: true,
       },
-      '/verifyuser**': {
-        target: 'http://localhost:3000/verifyuser',
-        secure: false,
-        changeOrigin: true,
-      },
     },
   },
 };
