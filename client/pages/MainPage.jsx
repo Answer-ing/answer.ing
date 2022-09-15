@@ -44,9 +44,7 @@ function MainPage(props) {
 
   return (
     <div className="MainPage">
-      <AppNavBar/>
       <span className="MainText">Answer.ing<br /></span>
-      <AppModal/>
       {/* <NavbarContainer /> */}
       <PostQuestion />
       {/* {questions} */}
