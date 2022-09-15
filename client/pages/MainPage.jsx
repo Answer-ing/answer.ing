@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import NavbarContainer from '../containers/NavbarContainer.jsx';
 import PostQuestion from '../components/PostQuestion.jsx';
 import QuestionBox from '../components/QuestionBox.jsx';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function MainPage(props) {
 
