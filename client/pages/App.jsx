@@ -16,11 +16,10 @@ import MainPage from './MainPage.jsx';
 //   User profile page
 
 function App() {
-  const [isAuthenticated, changeAuthenticated] = useState(false);
+  const [isAuthenticated, changeAuthenticated] = useState(true);
 
   // code adapted from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
   // ?. explained here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-  console.log('hello!')
   if (document.cookie) console.log('document.cookie:', document.cookie);
   const getCookie = (cookie) => {
     return document.cookie

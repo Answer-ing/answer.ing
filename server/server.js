@@ -3,6 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const userRouter = require('./routes/userRouter');
+const questionRouter = require('./routes/questionRouter');
 
 const server = express();
 const PORT = process.env.PORT || 3000; // heroku port || localhost
@@ -15,6 +16,7 @@ server.use(cookieParser()); // Parses cookies sent with the forms from the front
 server.use(cors());
 
 // server.use('/login', authRouter);
+server.use('/questions', questionRouter);
 server.use('/', verifyRouter);
 // server.use('/', userRouter);
 

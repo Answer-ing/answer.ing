@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import NavbarContainer from '../containers/NavbarContainer.jsx';
+// import NavbarContainer from '../containers/NavbarContainer.jsx';
+import AppNavBar from '../components/NavBar.jsx';
+import AppModal from '../components/Modal.jsx';
 import PostQuestion from '../components/PostQuestion.jsx';
 import QuestionBox from '../components/QuestionBox.jsx';
 import { useEffect, useState } from 'react';
@@ -42,8 +44,10 @@ function MainPage(props) {
 
   return (
     <div className="MainPage">
+      <AppNavBar/>
       <span className="MainText">Answer.ing<br /></span>
-      <NavbarContainer />
+      <AppModal/>
+      {/* <NavbarContainer /> */}
       <PostQuestion />
       {/* {questions} */}
     </div>
