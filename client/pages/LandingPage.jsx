@@ -20,7 +20,7 @@ export const LandingPage = (props) => {
     <div className="LandingPage">
       <img id='codesmithImg' src="https://miro.medium.com/max/1200/1*aqCqaO8ALzYczUHe_3g3Gw.jpeg" alt="Codesmith Logo"></img>
       <span className="LandingText">Welcome to <br /> Codesmith's Answering Service<br /></span>
-      <button className="LogInButton" onClick={() => logIn()}>Sign in with GitHub</button>
+      <button className="LogInButton" onClick={() => logIn()}></button>
       {/* <h1>Answer-ing</h1> */}
       {/* <button className='consent' onClick={() => logIn()}>Register with GitHub</button> */}
       {/* <button className='consent' onClick={() => parent.open(`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`)}>Register with GitHub</button> */}

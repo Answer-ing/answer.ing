@@ -40,34 +40,14 @@ authController.getToken = (req, res, next) => {
       const data = result.body;
       res.locals.data = data;
       res.locals.accessToken = data.access_token;
-      // data should look like:
-      // { access_token, token_type, scope }
-      console.log('data', res.locals.data)
+
+      console.log('data', res.locals.data);
       return next();
     })
 }
 
 authController.getUser = async (req, res, next) => {
   console.log('token:', res.locals.accessToken);
-  // try {
-  //   const result = await fetch(
-  //     'https://api.github.com/user', {
-  //       headers: {
-  //         Authorization: 'Bearer ' + res.locals.accessToken
-  //         // Authorization: 'Bearer ' + req.cookies.access_token
-  //       }
-  //     }
-  //   );
-  //   const parsedResult = await result.json();
-  //   // res.locals.name = parsedResult.localizedFirstName + ' ' + parsedResult.localizedLastName;
-  //   // console.log('me API call result');
-  //   console.log('result:');
-  //   console.log(parsedResult);
-  //   return next();
-  // }
-  // catch(err) {
-  //   return next(err);
-  // }
 
   request
     .get('https://api.github.com/user')
@@ -78,57 +58,12 @@ authController.getUser = async (req, res, next) => {
     })
     .then(function(result) {
       console.log('in result');
-      const user = result.body
-      // console.log(user)
+      const user = result.body;
       res.locals.user = user;
-      console.log('user', res.locals.user)
+      console.log('user', res.locals.user);
       return next();
     })
 }
 
-
-  
-// authController.getTokenOLD = (req, res, next) => {
-//   const { code } = req.query;
-
-//   if (!code) {
-//     return res.send('error in getToken: auth code not received');
-//   }
-
-//   request
-//     .post('https://github.com/login/oauth/access_token')
-//     .send({
-//       client_id: CLIENT_ID,
-//       client_secret: CLIENT_SECRET,
-//       code: code,
-//       scope: 'user:email',
-//     })
-//     .set('Accept', 'application/json')
-//     .then(function(result) {
-//       const data = result.body;
-//       res.locals.data = data;
-//       res.locals.accessToken = data.access_token;
-//       // data should look like:
-//       // { access_token, token_type, scope }
-//       console.log('data', res.locals.data)
-//       return next();
-//     })
-// }
-
-// authController.getUserOLD = (req, res, next) => {
-//   console.log('token:', res.locals.accessToken)
-//   request
-//     .get('https://api.github.com/user')
-//     .set({ 'Authorization': `Bearer ${res.locals.accessToken}`, 
-//            'Accept': "application/vnd.github.v3+json" })
-//     .then(function(result) {
-//       console.log('in result');
-//       const user = result.body
-//       // console.log(user)
-//       res.locals.user = user;
-//       console.log('user', res.locals.user)
-//       return next();
-//     })
-// }
 
 module.exports = authController;

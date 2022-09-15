@@ -6,10 +6,10 @@ const router = Router();
 
 // localhost:8080/verifyuser
 router.get('/', authController.getToken, authController.getUser, (req, res) => {
-  // return res.redirect('/');
-  console.log('hello from final func in /verifyuser GET request');
-  return res.sendStatus(200);
-  //.redirect('/');
+  console.log('Finished fetching user data from GitHub!');
+  console.log(res.locals.user)
+  console.log('res.locals.user')
+  return res.status(200).json(res.locals.user);
 });
 
 module.exports = router;
