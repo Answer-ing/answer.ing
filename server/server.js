@@ -6,11 +6,18 @@ const userRouter = require('./routes/userRouter');
 
 const server = express();
 const PORT = process.env.PORT || 3000; // heroku port || localhost
+const authRouter = require('./routes/authRouter');
+const verifyRouter = require('./routes/verifyRouter');
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(cookieParser()); // Parses cookies sent with the forms from the frontend
 server.use(cors());
+
+server.use('/login', authRouter);
+server.use('/', verifyRouter);
+
+
 // server.use('/public', express.static(path.join(__dirname, '..', 'public')));
 
 // server.get('/', (req, res, next) => {
@@ -18,6 +25,9 @@ server.use(cors());
 //   // return res.status(200).send('hello world');
 // });
 
+// server.get('/*', (req, res) => {
+//   return res.status(200).redirect('/');
+// });
 server.use('/', userRouter);
 
 // catch-all route handler for any requests to an unknown route
@@ -40,3 +50,6 @@ server.use((err, req, res, next) => {
 server.listen(PORT, () => {
 	console.log('Server is listening on port ' + PORT);
 })
+
+// might not need this part
+module.exports = server;
