@@ -53,12 +53,76 @@ function MainPage(props) {
     <main>
         <h1><strong>{'<'}</strong> Answer.ing <strong>{'/>'}</strong></h1>
         <PostQuestion/>
-        {/* <form action="/api" method="POST">
-            <textarea type="text" name="post" spellcheck="false" placeholder='// console.log("hello world!");' required></textarea>
-            <button>Submit</button>
-        </form> */}
+
         <hr/>
-        <div class="container"/>
+        <div className="container">
+          <div className="confession">
+            <div className="postHeader">
+              <strong>Google</strong>
+              <span><strong> Tyler Wilson </strong> &nbsp; <b> 9/29/22 </b> &nbsp; 8:06 PM </span>
+            </div>
+            <p><em>"What is concurrency?"</em></p>
+            {/* <p><em class="tags">JavaScript</em><em class="tags">FAANG</em></p> */}
+          </div>
+
+            {/* <div className="comment">
+              <div className="postHeader">
+                <span><strong> Luke Roberts </strong> &nbsp; <b> 9/29/22 </b> &nbsp; 8:06 PM </span>
+              </div>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores blanditiis quae doloremque vero cupiditate nesciunt esse accusamus inventore ut dignissimos. Earum vel, beatae ea labore molestias magnam nesciunt dolorem praesentium!
+            </div> */}
+
+          <div className="confession">
+            <div className="postHeader">
+              <strong>Amazon</strong>
+              <span><strong> Emily Bae </strong> &nbsp; <b> 9/29/22 </b> &nbsp; 1:24 PM </span>
+            </div>
+            <p><em>"Can you explain event bubbling?"</em></p>
+          </div>
+
+          <div className="confession">
+            <div className="postHeader">
+              <strong>Spotify</strong>
+              <span><strong> Andrew Jung </strong> &nbsp; <b> 9/28/22 </b> &nbsp; 11:39 AM </span>
+            </div>
+            <p><em>"What was a time when something you worked on made an impact?"</em></p>
+          </div>
+
+          <div className="confession">
+            <div className="postHeader">
+              <strong>Crunchyroll</strong>
+              <span><strong> Jeff Wentworth </strong> &nbsp; <b> 9/28/22 </b> &nbsp; 5:23 PM </span>
+            </div>
+            <p><em>"What are the three golden rules of React state?"</em></p>
+          </div>
+
+          <div className="confession">
+            <div className="postHeader">
+              <strong>Microsoft</strong>
+              <span><strong> Mimi Le </strong> &nbsp; <b> 9/26/22 </b> &nbsp; 6:28 PM </span>
+            </div>
+            <p><em>"Can you explain minification and uglification?"</em></p>
+          </div>
+
+          <div className="confession">
+            <div className="postHeader">
+              <strong>AirBnB</strong>
+              <span><strong> Nick Krug </strong> &nbsp; <b> 9/28/22 </b> &nbsp; 4:07 PM </span>
+            </div>
+            <p><em>"How would you go about designing a web cache?"</em></p>
+          </div>
+
+          <div className="confession">
+            <div className="postHeader">
+              <strong>TikTok</strong>
+              <span><strong> Hui Mu </strong> &nbsp; <b> 9/27/22 </b> &nbsp; 11:44 AM </span>
+            </div>
+            <p><em>"How is React routing different from conventional routing?"</em></p>
+          </div>
+
+          
+
+        </div>
     </main>
   );
 }

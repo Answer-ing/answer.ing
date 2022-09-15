@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from '../App.scss';
 
 
 // const CLIENT_ID = '78jexcndblghpj';
@@ -19,7 +20,7 @@ export const LandingPage = (props) => {
 
   return (
     <div className="LandingPage">
-      <img id='codesmithImg' src="https://miro.medium.com/max/1200/1*aqCqaO8ALzYczUHe_3g3Gw.jpeg" alt="Codesmith Logo"></img>
+      <img id='codesmithImg' src="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/216/original/white-background.png" alt="Codesmith Logo"></img>
       <span className="LandingText">Welcome to <br /> Codesmith's Answering Service<br /></span>
       <button className="LogInButton" onClick={() => logIn()}></button>
       {/* <h1>Answer-ing</h1> */}

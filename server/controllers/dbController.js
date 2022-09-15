@@ -121,7 +121,7 @@ dbController.getQuestions = async (req, res, next) => {
     console.log(res.locals.questions);
     return next();
   } catch (err) {
-    return next({ log: `dbController.getQuestions error: ${error}`, message: 'Error found @ dbControllers.getQuestions' });
+    return next({ log: `dbController.getQuestions error: ${err}`, message: 'Error found @ dbControllers.getQuestions' });
   }
 };
 

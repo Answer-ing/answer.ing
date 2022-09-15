@@ -33,16 +33,29 @@ h2 {
 .confession {
     margin: 0.5rem 0;
     padding: 0.75rem 1.25rem;
-    background: rgba(160, 221, 202, 0.547);
+    // background: rgba(160, 221, 202, 0.547);
     border-radius: 30px;
+}
+
+.postHeader {
+    display: flex;
+    justify-content: space-between;
 }
 
 .confession:nth-child(odd) {
     text-align: left;
+    background: rgba(160, 221, 202, 0.547);
+    strong {
+        color: #5aa783;
+    }
 }
 
 .confession:nth-child(even) {
-    text-align: right;
+    // text-align: right;
+    background: rgba(160, 172, 221, 0.547);
+    strong {
+        color: #354f8c;
+    }
 }
 
 .confession:first-of-type {
@@ -53,9 +66,6 @@ h2 {
     margin-bottom: 0;
 }
 
-strong {
-    color: #6fbc98;
-}
 
 form {
     display: flex;

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { LandingPage } from './LandingPage.jsx';
 import MainPage from './MainPage.jsx';
 
-
 // Approach:
 // check if authenticated on load using a hook as the first thing
 // Display lightweight static landing page that goes away when authed
@@ -16,7 +15,7 @@ import MainPage from './MainPage.jsx';
 //   User profile page
 
 function App() {
-  const [isAuthenticated, changeAuthenticated] = useState(true);
+  const [isAuthenticated, changeAuthenticated] = useState(false);
 
   // code adapted from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
   // ?. explained here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
