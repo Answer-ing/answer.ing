@@ -34,7 +34,7 @@ dbController.findUserByName = async (req, res, next) => {
     res.locals.userFound = userFound.rows;
     return next();
   } catch (err) {
-    return next({ log: `dbController.findUserByName error: ${error}`, message: 'Error found @ dbControllers.findUserByName' });
+    return next({ log: `dbController.findUserByName error: ${err}`, message: 'Error found @ dbControllers.findUserByName' });
   }
 };
 
@@ -48,14 +48,15 @@ dbController.findUserById = async (req, res, next) => {
     res.locals.userFound = userFound.rows;
     return next();
   } catch (err) {
-    return next({ log: `dbController.findUserById error: ${error}`, message: 'Error found @ dbControllers.findUserById' });
+    return next({ log: `dbController.findUserById error: ${err}`, message: 'Error found @ dbControllers.findUserById' });
   }
 }
 
 dbController.postQuestion = async (req, res, next) => {
   try {
     console.log('starting postQuestion');
-    const userId = req.cookies;
+    // const userId = req.cookies;
+    const userId = 1;
     const { question, company } = req.body;
     // check if the company exists by name
     //   if so, use that company ID for the insert
@@ -64,28 +65,30 @@ dbController.postQuestion = async (req, res, next) => {
     // create a new question
     // finally, create a new question_company row to associate the two
     const matchingCompany = await db.query('SELECT id FROM company WHERE lower(name) = $1;', [company.toLowerCase()]);
-    console.log('matchingCompany:');
-    console.log(matchingCompany.rows);
+    // console.log('matchingCompany:');
+    // console.log(matchingCompany.rows);
     let companyId;
     if (!matchingCompany.rows[0]) {
-      const createCompanyResult = await db.query('INSERT INTO company (client_id, name) VALUES ($1, $2);', [userId, company]);
+      const createCompanyResult = await db.query('INSERT INTO company (created_by, name) VALUES ($1, $2);', [userId, company]);
       const newCompany = await db.query('SELECT id FROM company WHERE name = $1;', [company]);
-      console.log('newCompany result:');
-      console.log(newCompany.rows);
-      companyId = newCompany.rows[0];
+      // console.log('newCompany result:');
+      // console.log(newCompany.rows);
+      companyId = newCompany.rows[0].id;
     } else {
-      companyId = matchingCompany.rows[0];
+      companyId = matchingCompany.rows[0].id;
     }
 
     const newQuestionText = 'INSERT INTO question (created_by, text) VALUES ($1, $2);';
-    const newQuestion = await db.query(newQuestionText, [userId, question]);
-    console.log(newQuestion);
-    const newQuestionId = await db.query('SELECT id FROM question ORDER BY created_at DESC LIMIT 1;');
-    const newQuestionCompany = await db.query(`INSERT INTO question_company (question_id, company_id) VALUES (${newQuestionId}, ${companyId});`);
+    const newQuestionInsert = await db.query(newQuestionText, [userId, question]);
+    // console.log(newQuestionInsert);
+    const newQuestion = await db.query('SELECT id FROM question ORDER BY created_at DESC LIMIT 1;');
+    const newQuestionId = newQuestion.rows[0].id;
+    // console.log(newQuestionId)
+    const newQuestionCompany = await db.query(`INSERT INTO question_company (question_id, company_id, created_by) VALUES (${newQuestionId}, ${companyId}, 1);`);
     console.log(newQuestionCompany);
     return next();
   } catch (err) {
-    return next({ log: `dbController.postQuestion error: ${error}`, message: 'Error found @ dbControllers.postQuestion' });
+    return next({ log: `dbController.postQuestion error: ${err}`, message: 'Error found @ dbControllers.postQuestion' });
   }
 }
 
@@ -121,7 +124,7 @@ dbController.getQuestions = async (req, res, next) => {
     console.log(res.locals.questions);
     return next();
   } catch (err) {
-    return next({ log: `dbController.getQuestions error: ${error}`, message: 'Error found @ dbControllers.getQuestions' });
+    return next({ log: `dbController.getQuestions error: ${err}`, message: 'Error found @ dbControllers.getQuestions' });
   }
 };
 
