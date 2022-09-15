@@ -19,14 +19,11 @@ function PostQuestion() {
   }
 
   return (
-    <div>
-      <textarea id="postQuestion" name="story" rows="4" cols="60">
-        Post your interview question!
-      </textarea>
-      <br />
-      <button>Post</button>
-    </div>
-  );
+    <form action="/api" method="POST">
+        <textarea type="text" name="post" spellcheck="false" placeholder='// console.log("hello world!");' required></textarea>
+        <button>Submit</button>
+    </form>
+);
 }
 
 export default PostQuestion;
