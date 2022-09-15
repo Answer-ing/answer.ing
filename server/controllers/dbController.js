@@ -5,9 +5,9 @@ const dbController = {};
 dbController.createUser = async (req, res, next) => {
   try {
     console.log('Creating user...');
-    const { name, email } = req.body;
-    const values = [name, email];
-    const text = `INSERT INTO client (name, email) VALUES ($1, $2)`;
+    const { name, id } = res.locals.user;
+    const values = [name, id];
+    const text = `INSERT INTO client (name, user_id) VALUES ($1, $2)`;
     await db.query(text, values);
     const newUser = await db.query('SELECT * FROM client ORDER BY id DESC LIMIT 1');
     console.log('Successfully registered the following user: ', newUser.rows);
@@ -30,13 +30,13 @@ dbController.findUserByName = async (req, res, next) => {
 
     if (name) console.log(`Successfully located the following user(s) named ${name}:`, userFound.rows);
     else console.log(`Successfully located the following user(s) with the email '${email}':`, userFound.rows[0]);
-   
+
     res.locals.userFound = userFound.rows;
     return next();
   } catch (err) {
     return next({ log: `dbController.findUserByName error: ${error}`, message: 'Error found @ dbControllers.findUserByName' });
   }
-}
+};
 
 dbController.findUserById = async (req, res, next) => {
   try {
@@ -50,6 +50,61 @@ dbController.findUserById = async (req, res, next) => {
   } catch (err) {
     return next({ log: `dbController.findUserById error: ${error}`, message: 'Error found @ dbControllers.findUserById' });
   }
+};
+
+dbController.postQuestion = async (req, res, next) => {
+  try {
+    const userId = req.cookies;
+    const { question, company } = req.body;
+    // check if the company exists by name
+    //   if so, use that company ID for the insert
+    //   if not, create a new company
+    //   then query for that company to get the ID
+    // create a new question
+    // finally, create a new question_company row to associate the two
+    const matchingCompany = await db.query('SELECT COUNT(*) FROM company WHERE name = $1', [company]);
+    if (matchingCompany)
+    const query = 'INSERT INTO question (created_by, text)'
+    return next();
+  } catch(err) {
+    return next({ log: `dbController.postQuestion error: ${error}`, message: 'Error found @ dbControllers.postQuestion' });
+  }
+
+dbController.getQuestions = async (req, res, next) => {
+  try {
+    // add conditional logic using query for when we implement search
+    const text = `SELECT 
+        question.id,
+        question.text AS question_text,
+        client.name AS username,
+        latest_company.company_count,
+        latest_company.latest_company_timestamp,
+        company.name AS company_name,
+        count(answer.id) AS answer_count,
+        max(answer.created) as latest_answer_timestamp
+      FROM 
+        QUESTION
+      JOIN CLIENT ON QUESTION.CLIENT_ID = CLIENT.ID
+      LEFT JOIN (select count(*) as company_count, max(created_at) as latest_company_timestamp, question_id from question_company group by question_id) latest_company
+        ON latest_company.question_id = question.id
+      LEFT JOIN company on latest_company.created_at = company.created_at
+      LEFT JOIN answer on answer.question_id = question.id
+      GROUP BY 
+        question.id,
+        question.text,
+        client.name,
+        latest_company.company_count,
+        latest_company.latest_company_timestamp,
+        company.name
+    `;
+    res.locals.questions = await db.query(text);
+    console.log(res.locals.questions);
+    return next();
+  } catch(err) {
+    return next({ log: `dbController.getQuestions error: ${error}`, message: 'Error found @ dbControllers.getQuestions' });
+  }
+};
+
 }
 
 module.exports = dbController;

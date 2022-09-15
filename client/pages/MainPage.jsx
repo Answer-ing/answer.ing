@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import NavbarContainer from '../containers/NavbarContainer.jsx';
 import PostQuestion from '../components/PostQuestion.jsx';
 import QuestionBox from '../components/QuestionBox.jsx';
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
+=======
+>>>>>>> ae4b40629480be5de2e9fc3a2b6736679cec7c60
 
 function MainPage(props) {
-
   const [questions, setQuestions] = useState([]);
 
   // populate questions with the appropriate API call here.
@@ -31,9 +33,21 @@ function MainPage(props) {
 
   // populate question boxes with all the data using a for loop
   // every question also needs an onClick handler that pops open the modal
-  let QuestionBoxes = [];
+  const QuestionBoxes = [];
   questions.forEach(el => {
-    console.log(el);
+    QuestionBoxes.push(
+      <QuestionBox
+        companyName={el.companyName}
+        companyCount={el.companyCount}
+        username={el.username}
+        latestQuestionTimestamp={el.latestQuestionTimestamp}
+        questionText={el.questionText}
+        responseCount={el.responseCount}
+        latestResponseTimestamp={el.latestResponseTimestamp}
+        key={`question${el.id}`}
+        id={el.id}
+      />,
+    );
   });
 
   // stretch:
@@ -45,7 +59,7 @@ function MainPage(props) {
       <span className="MainText">Answer.ing<br /></span>
       <NavbarContainer />
       <PostQuestion />
-      {/* {questions} */}
+      {/* {QuestionBoxes} */}
     </div>
   );
 }
