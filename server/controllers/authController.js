@@ -1,5 +1,3 @@
-// const express = require('express');
-// const server = express();
 const db = require('../models/dbModel.js');
 const fetch = require('node-fetch');
 const request = require('superagent');
