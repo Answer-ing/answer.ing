@@ -19,7 +19,7 @@ export const LandingPage = (props) => {
     <div className="LandingPage">
       <img id='codesmithImg' src="https://miro.medium.com/max/1200/1*aqCqaO8ALzYczUHe_3g3Gw.jpeg" alt="Codesmith Logo"></img>
       <span className="LandingText">Welcome to <br /> Codesmith's Answering Service<br /></span>
-      <button className="LogInButton" onClick={() => logIn()}></button>
+      <button className="LogInButton" onClick={() => logIn()}>Sign in with GitHub</button>
     </div>
   );
 };
