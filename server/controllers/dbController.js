@@ -5,9 +5,9 @@ const dbController = {};
 dbController.createUser = async (req, res, next) => {
   try {
     console.log('Creating user...');
-    const { name, email } = req.body;
-    const values = [name, email];
-    const text = `INSERT INTO client (name, email) VALUES ($1, $2)`;
+    const { name, id } = res.locals.user;
+    const values = [name, id];
+    const text = `INSERT INTO client (name, user_id) VALUES ($1, $2)`;
     await db.query(text, values);
     const newUser = await db.query('SELECT * FROM client ORDER BY id DESC LIMIT 1');
     console.log('Successfully registered the following user: ', newUser.rows);
