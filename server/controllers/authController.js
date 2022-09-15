@@ -3,20 +3,14 @@
 const db = require('../models/dbModel.js');
 const fetch = require('node-fetch');
 const request = require('superagent');
-// const axios = require('axios');
-// require('dotenv').config();
-// const CLIENT_ID = 'b9cb6a79d6b5b3655653';
-const CLIENT_ID = 'Iv1.17f49f5c8005c3c4';
-// const CLIENT_SECRET = 'b44551fa00c02ac80a15bd2ffebabee5052513ce';
-const CLIENT_SECRET = '675442a98307f2fdb4e42870358cce13785b6768';
-// axios.get('some link').then(res => res.data)
+require('dotenv').config();
 
 const authController = {};
 
 authController.getToken = (req, res, next) => {
   console.log('hello from authController.getToken!');
   const { code } = req.query;
-  console.log('code:', code)
+  console.log('code:', code);
 
   // if (!code) {
   //   console.log('code doesnt exist');
@@ -30,9 +24,9 @@ authController.getToken = (req, res, next) => {
   request
     .post('https://github.com/login/oauth/access_token')
     .send({
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      code: code,
+      client_id: process.env.GIT_CLIENT_ID,
+      client_secret: process.env.GIT_CLIENT_SECRET,
+      code,
       scope: 'user:email',
     })
     .set('Accept', 'application/json')

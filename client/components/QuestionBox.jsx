@@ -5,3 +5,13 @@ import React, { Component } from 'react';
 // then a textbox with the question in it
 // then on the bottom, another flexbox with
 // the number of comments and name and timestamp with the latest comment
+
+function QuestionBox() {
+  return (
+    <div>
+      question stuff goes here
+    </div>
+  );
+}
+
+export default QuestionBox;
