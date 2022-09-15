@@ -103,13 +103,13 @@ dbController.getQuestions = async (req, res, next) => {
         latest_company.latest_company_timestamp,
         company.name AS company_name,
         count(answer.id) AS answer_count,
-        max(answer.created) as latest_answer_timestamp
+        max(answer.created_at) as latest_answer_timestamp
       FROM 
         QUESTION
-      JOIN CLIENT ON QUESTION.CLIENT_ID = CLIENT.ID
+      JOIN CLIENT ON QUESTION.CREATED_BY = CLIENT.ID
       LEFT JOIN (select count(*) as company_count, max(created_at) as latest_company_timestamp, question_id from question_company group by question_id) latest_company
         ON latest_company.question_id = question.id
-      LEFT JOIN company on latest_company.created_at = company.created_at
+      LEFT JOIN company on latest_company.latest_company_timestamp = company.created_at
       LEFT JOIN answer on answer.question_id = question.id
       GROUP BY 
         question.id,
