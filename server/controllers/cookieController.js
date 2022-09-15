@@ -2,8 +2,8 @@ const express = require('express');
 const server = express();
 const axios = require('axios');
 const {OAuth2Client} = require('google-auth-library');
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_PW;
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const CLIENT_SECRET = process.env.GOOGLE_CLIENT_PW;
 // axios.get('some link').then(res => res.data)
 
 let id_token;

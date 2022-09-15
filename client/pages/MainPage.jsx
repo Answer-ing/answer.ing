@@ -5,6 +5,7 @@ import AppModal from '../components/Modal.jsx';
 import PostQuestion from '../components/PostQuestion.jsx';
 import QuestionBox from '../components/QuestionBox.jsx';
 import { useEffect, useState } from 'react';
+import './MainPage.scss';
 
 function MainPage(props) {
 
@@ -43,12 +44,22 @@ function MainPage(props) {
   // this is usually done with query params (?search=""&tag=""&role="", etc.)
 
   return (
-    <div className="MainPage">
-      <span className="MainText">Answer.ing<br /></span>
-      {/* <NavbarContainer /> */}
-      <PostQuestion />
-      {/* {questions} */}
-    </div>
+    // <div className="MainPage">
+    //   <span className="MainText">Answer.ing<br /></span>
+    //   {/* <NavbarContainer /> */}
+    //   <PostQuestion />
+    //   {/* {questions} */}
+    // </div>
+    <main>
+        <h1><strong>{'<'}</strong> Answer.ing <strong>{'/>'}</strong></h1>
+        <PostQuestion/>
+        {/* <form action="/api" method="POST">
+            <textarea type="text" name="post" spellcheck="false" placeholder='// console.log("hello world!");' required></textarea>
+            <button>Submit</button>
+        </form> */}
+        <hr/>
+        <div class="container"/>
+    </main>
   );
 }
 

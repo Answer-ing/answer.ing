@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+body {
+    font-family: 'Varela Round', sans-serif;
+}
+
+main {
+    margin: 5vh 10vw;
+    padding: 0 10vw;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    color: #0f3181;
+}
+
+h1 em {
+    font-style: normal;
+    color: #999;
+}
+
+h2 {
+    text-align: center;
+}
+
+.container {
+    padding: 1em;
+}
+
+.confession {
+    margin: 0.5rem 0;
+    padding: 0.75rem 1.25rem;
+    background: rgba(160, 221, 202, 0.547);
+    border-radius: 30px;
+}
+
+.confession:nth-child(odd) {
+    text-align: left;
+}
+
+.confession:nth-child(even) {
+    text-align: right;
+}
+
+.confession:first-of-type {
+    margin-top: 0;
+}
+
+.confession:last-of-type {
+    margin-bottom: 0;
+}
+
+strong {
+    color: #6fbc98;
+}
+
+form {
+    display: flex;
+    margin: 0 1.25rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+}
+
+textarea {
+    min-height: 50px;
+    max-height: 100px;
+    padding: 1rem;
+    flex-grow: 2;
+    border: 1px solid #fff;
+    border-radius: 30px 0 0 30px;
+    background-color: #fff;
+    transition: border, background-color, linear 0.35s;
+    font-family: 'Consolas';
+}
+
+textarea::placeholder {
+    color: #ccc;
+    transition: color linear 0.15s;
+}
+
+textarea:focus {
+    border: 1px solid rgba(160, 221, 202, 0.8);
+    border-right-style: hidden;
+    outline: none !important;
+    background-color: rgba(160, 221, 202, 0.125);
+    transition: all linear 0.5s;
+    color: #0f3181;
+}
+
+textarea:focus::placeholder {
+    color: transparent;
+}
+
+button {
+    background: #6fbc98;
+    color: white;
+    border: none;
+    border-radius: 0 30px 30px 0;
+    padding: 0 1rem;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1rem;
+    transition: all ease-in-out 0.5s;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #7bc8a4;
+}
+
+hr {
+    width: calc(100% - 25rem);
+    height: 1px;
+    background-color: #0f3181;
+    border: none;
+}
+
+::selection {
+    color:#98ccb4;
+    background: #0f3181;
+}
+
+a {
+    transition: all linear 0.1s;
+    text-underline-offset: 3px;
+}
+
+:visited {
+    color: #0f3181;
+}
+
+a:hover {
+    color: #7bc8a4;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 992px) {
+    main {
+        margin: 5vh 5vw;
+        padding: 0 5vw;
+    }
+}
