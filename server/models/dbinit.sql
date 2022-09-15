@@ -2,7 +2,7 @@ CREATE TABLE "client" (
   "id" SERIAL PRIMARY KEY,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "name" VARCHAR(50) NOT NULL,
-  "email" VARCHAR(100) NOT NULL UNIQUE
+  "user_id" INT NOT NULL UNIQUE
 );
 
 -- INSERT INTO client (name, email) VALUES ('Crystal', 'crystal@gmail.com');

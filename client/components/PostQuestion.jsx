@@ -14,7 +14,7 @@ function PostQuestion() {
 
         }
 
-      }
+      })
   }
 
   return (
