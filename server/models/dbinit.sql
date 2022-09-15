@@ -31,9 +31,7 @@ CREATE TABLE "question" (
   "created_by" INT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP, -- verify
 --  "deleted_at" TIMESTAMPTZ, -- DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-  "text" VARCHAR(500) NOT NULL UNIQUE,
---  "role" INT NOT NULL,          -- do we want this to be an INT or VARCHAR?
-  -- "level" VARCHAR(50)
+  "text" VARCHAR(500) NOT NULL UNIQUE
 );
 
 CREATE TABLE "answer" (

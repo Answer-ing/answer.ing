@@ -8,7 +8,8 @@ router.get('/', dbController.getQuestions, (req, res) => {
 });
 
 router.post('/', dbController.postQuestion, (req, res) => {
-  res.status(200);
-})
+  console.log('got here');
+  res.send(200);
+});
 
 module.exports = router;
